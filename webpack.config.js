@@ -37,7 +37,6 @@ const config = {
                     'css-loader',
                 ]
             },
-
             {
                 test: /\.(gif|jpg|jpeg|png|svg)$/,
                 use: [{
@@ -66,7 +65,7 @@ if (isDev) {
             },
             'stylus-loader'
         ]
-    }, )
+    })
     config.devtool = "#cheap-module-eval-source-map"
     config.devServer = {
         port: 8000,
@@ -83,6 +82,10 @@ if (isDev) {
         new webpack.NoEmitOnErrorsPlugin()
     )
 } else {
+    config.entry = {
+        app: path.join(__dirname, 'src/index.js'),
+        vender: ['vue']
+    }
     config.output.filename = '[name].[chunkhash:8].js'
     config.module.rules.push({
         test: /\.styl/,
@@ -100,7 +103,16 @@ if (isDev) {
             ]
         })
     }, )
-    config.module.rules.push(new ExtractPlugin('styles.[contentHash:8].css'))
+    config.plugins.push(
+        new ExtractPlugin('styles.[contentHash:8].css'),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['vendor', 'manifest']
+        }),
+        //在有新的模块加入的时候，webpack会给没有模块加上名字，避免因为文件删改，文件的hash名字随意更改，有利于查询缓存
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'runtime' //在entry里面没有声明过的名字，一般是runtime
+        })
+    )
 }
 
 module.exports = config
