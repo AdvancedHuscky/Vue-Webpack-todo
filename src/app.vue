@@ -1,15 +1,17 @@
 <template>
-    <div id="text">{{text}}</div>
+    <div id="text">{{text}}2134123411</div>
 </template>
 <script>
 export default {
     data() {
-        text: "abc";
+        return {
+            text: "abc"
+        };
     }
 };
 </script>
 <style>
-/* #text {
+#text {
     color: blue;
-} */
+}
 </style>
