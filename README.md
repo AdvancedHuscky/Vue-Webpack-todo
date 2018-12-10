@@ -16,3 +16,6 @@ webpack-dev-server@2.10.0
 
 //cross-env 用来适配不同系统来设置环境变量
 process.env 可以读取环境变量
+
+extract-text-webpack
+chunkHash 命名只能在生产环境使用，否则会报错
