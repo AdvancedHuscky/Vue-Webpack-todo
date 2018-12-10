@@ -9,7 +9,7 @@ export default {
 };
 </script>
 <style>
-#text {
+/* #text {
     color: blue;
-}
+} */
 </style>
