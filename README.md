@@ -70,3 +70,5 @@ vue 的响应式（reactive），主旨是依赖，有依赖关系就会随着�
 比如 template 中有数据依赖 data,computed 中引用数据的依赖等等
 
 使用 vue 的时候，尽量把数据都声明在顶层组件里面，便于管理。数据在哪里声明，就在那里操作
+
+vue 文件想要在更改样式的时候使用热更新，需要将 style-loader 替换为 vue-style-loader
