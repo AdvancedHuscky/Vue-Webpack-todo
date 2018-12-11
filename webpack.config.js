@@ -66,7 +66,7 @@ if (isDev) {
             'stylus-loader'
         ]
     })
-    config.devtool = "#cheap-module-eval-source-map"
+    config.devtool = "#cheap-module-eval-source-map" //代码映射，官网推荐的设置，可以看到打包之前的自己写的代码，便于调试
     config.devServer = {
         port: 8000,
         host: '0.0.0.0', //localhost和内网ip都能访问
@@ -78,8 +78,8 @@ if (isDev) {
         open: true
     }
     config.plugins.push(
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.HotModuleReplacementPlugin(), //热更新
+        new webpack.NoEmitOnErrorsPlugin() //减少不需要信息的展示
     )
 } else {
     config.entry = {
@@ -109,6 +109,7 @@ if (isDev) {
             name: ['vendor', 'manifest']
         }),
         //在有新的模块加入的时候，webpack会给没有模块加上名字，避免因为文件删改，文件的hash名字随意更改，有利于查询缓存
+        //vendor要放在runtime前面，否则会失去作用
         new webpack.optimize.CommonsChunkPlugin({
             name: 'runtime' //在entry里面没有声明过的名字，一般是runtime
         })

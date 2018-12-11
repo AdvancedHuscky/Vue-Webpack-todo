@@ -52,3 +52,21 @@ JS 只能解析 JS 文件，使用 loader 后就能在 JS 中解析其他的资�
 url-loader 是对 file-loader 进行了封装，如果图片小于 limit 设置的值，url-loader 就会对图片进行 base64 转换，然后写入 JS 中，减少请求。如果大于 limit 的值就会用 file-loader 读取图片，再存放在其他地方。
 limit：设置进行转换的图片的最大大小。
 name：没有进行转换的图片的名称。[name] -- 原始图片的名称，[ext] -- 原始图片的扩展名
+
+为何头部已经声明
+const isDev = process.env.NODE_ENV == "development"
+在插件中还要引入这个
+plugins: [
+new webpack.DefinePlugin({
+'process.env': {
+NODE_ENV: isDev ? '"development"' : '"production"'
+}
+}),
+原因：这是要给内部 webpack,页面上以及我们自己写的代码来判断环境，也就是说可以在代码中直接调用
+其次，vue 会根据不同的环境区分打包，在 dist 目录下会有不同来源的代码，在开发环境是一个比较大的版本，里面会包含很多错误信息的提示以及功能
+这些功能在正式环境中没必要去用，一方面会加大文件的大小，另一方面会让程序的运行效率降低
+
+vue 的响应式（reactive），主旨是依赖，有依赖关系就会随着发生改变
+比如 template 中有数据依赖 data,computed 中引用数据的依赖等等
+
+使用 vue 的时候，尽量把数据都声明在顶层组件里面，便于管理。数据在哪里声明，就在那里操作
