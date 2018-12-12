@@ -99,3 +99,14 @@ eslint eslint-config-standard acorn@^6.0.0 eslint-plugin-standard eslint-plugin-
   },
 
   以上配置无法满足.vue 文件的解析，后来使用 eslint-plugin-vue 解决了
+
+##迁移到 webpack4
+卸载 webpack webpack-dev-server webpack-merge extract-text-webpack-plugin babel-loader file-loader html-webpack-plugin
+或替换为最新版本
+babel-core 替换为@babel/core
+https://blog.csdn.net/bubbling_coding/article/details/81585412
+
+坑 1 如果 vue-template-compiler 和 vue 的版本不一致，会一直报错
+
+坑 2 TypeError: Cannot read property 'bindings' of null
+有可能是 babel 的设置有问题，此例中将 presets 设置成对应的预处理器就 ok 了

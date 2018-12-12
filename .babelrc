@@ -1,9 +1,9 @@
 {
-    "presets": [
-        "env"
-    ],
-    "plugins": [
-        "transform-vue-jsx",
-        "syntax-jsx"
-    ]
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "transform-vue-jsx",
+    "syntax-jsx"
+  ]
 }
