@@ -1,13 +1,25 @@
 <template>
-    <div class="helper">
-        <span class="left">{{unFinishedTodoLength}} items left</span>
-        <span class="tabs">
-            <span v-for="state in states" :key="state" :class="[state,filter===state?'actived':'']" @click="toggleFilter(state)">
-                {{state}}
-            </span>
-        </span>
-        <span class="clear" @click="clearAllCompleted">clear all</span>
-    </div>
+  <div class="helper">
+    <span class="left">
+      {{ unFinishedTodoLength }} items left
+    </span>
+    <span class="tabs">
+      <span
+        v-for="state in states"
+        :key="state"
+        :class="[state,filter===state?'actived':'']"
+        @click="toggleFilter(state)"
+      >
+        {{ state }}
+      </span>
+    </span>
+    <span
+      class="clear"
+      @click="clearAllCompleted"
+    >
+      clear all
+    </span>
+  </div>
 </template>
 <script>
 export default {

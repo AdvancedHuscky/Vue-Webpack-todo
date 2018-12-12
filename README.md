@@ -74,3 +74,28 @@ vue 的响应式（reactive），主旨是依赖，有依赖关系就会随着�
 #精深课程
 vue 文件想要在更改样式的时候使用热更新，需要将 style-loader 替换为 vue-style-loader
 rimraf 每次打包前将旧的 dist 删除 "clean":"rimraf dist",需要在 package.json script 中配置
+
+##eslint
+推荐安装
+eslint eslint-config-standard acorn@^6.0.0 eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
+
+#### eslint --init
+
+- eslint-config-standard@12.0.0
+- eslint-plugin-promise@4.0.1
+- eslint-plugin-standard@4.0.0
+- eslint-plugin-node@8.0.0
+- eslint-plugin-import@2.14.0
+- eslint@5.10.0
+- eslint-plugin-html@5.0.0
+  支持.vue 文件的解析，安装 eslint-plugin-html
+
+  安装 eslint-loader,babel-eslint
+  {
+  test: /\.(vue|js|jsx)\$/,
+  loader: 'eslint-loader',
+  exclude: /node_modules/,
+  enforce: 'pre'//预处理,在 vue-loader 等其他 loader 处理之前先处理，有错误直接报错
+  },
+
+  以上配置无法满足.vue 文件的解析，后来使用 eslint-plugin-vue 解决了

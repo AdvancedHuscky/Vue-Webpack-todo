@@ -1,20 +1,31 @@
 <template>
-    <div :class="['todo-item',todo.completed?'completed':'']">
-        <input type="checkbox" class="toggle" v-model="todo.completed">
-        <label for="">{{todo.content}}</label>
-        <button :class="$style.destory" @click="deleteTodo">删除</button>
-    </div>
+  <div :class="['todo-item',todo.completed?'completed':'']">
+    <input
+      v-model="todo.completed"
+      type="checkbox"
+      class="toggle"
+    >
+    <label for="">
+      {{ todo.content }}
+    </label>
+    <button
+      :class="$style.destory"
+      @click="deleteTodo"
+    >
+      删除
+    </button>
+  </div>
 </template>
 <script>
 export default {
-    mounted() {
-        console.log(this.$style);
-    },
     props: {
         todo: {
             type: Object,
             required: true
         }
+    },
+    mounted() {
+        console.log(this.$style);
     },
     methods: {
         deleteTodo() {
