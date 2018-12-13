@@ -9,6 +9,6 @@ module.exports = {
     "sourceType": "module"
   },
   "rules": {
-    "no-new": "off"
+    "no-new": "off" //可不可以new 新的对象
   }
 };
