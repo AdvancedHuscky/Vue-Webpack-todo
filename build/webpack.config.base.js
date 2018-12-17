@@ -9,7 +9,8 @@ const config = {
   entry: path.join(__dirname, '../client/index.js'),
   output: {
     filename: 'bundle.[hash:8].js',
-    path: path.join(__dirname, '../dist')
+    path: path.join(__dirname, '../dist'),
+    //publicPath:
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -19,8 +20,7 @@ const config = {
     })
   ],
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(vue|js|jsx)$/,
         loader: 'eslint-loader',
         exclude: /node_modules/,
@@ -46,15 +46,13 @@ const config = {
       },
       {
         test: /\.(gif|jpg|jpeg|png|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 1024,
-              name: 'resources/[path][name].[hash:8].[ext]'
-            }
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 1024,
+            name: 'resources/[path][name].[hash:8].[ext]'
           }
-        ]
+        }]
       }
     ]
   }

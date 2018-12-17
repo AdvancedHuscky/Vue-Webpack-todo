@@ -3,6 +3,10 @@
     <Header />
     <Todo />
     <Footer />
+    <RouterView />
+    <RouterLink to="/login">
+      login
+    </RouterLink>
   </div>
 </template>
 <script>
