@@ -1,4 +1,4 @@
-import Todo from '../views/todo/todu.vue'
+// import Todo from '../views/todo/todu.vue'
 import Login from '../views/login/login.vue'
 export default [{
     path: '/',
@@ -6,7 +6,9 @@ export default [{
   },
   {
     path: '/app',
-    component: Todo,
+    //component: Todo,
+    component: () => import('../views/todo/todu.vue') //动态引入组件
+    //需要安装 babel-plugin-syntax-dynamic-import
     // children: [{
     //   path: 'test',
     //   component: Login
@@ -21,7 +23,7 @@ export default [{
     // props: {
     //   id: 'itemId'
     // },
-    component: Todo,
+    component: () => import('../views/todo/todu.vue'), //动态引入组件,
     name: 'app',
     meta: { //存储一些可能用到的元信息，可以通过$route.meta拿到
       title: 'this is app',
