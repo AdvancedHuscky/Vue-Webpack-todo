@@ -1,15 +1,19 @@
 import Vue from 'vue'
 import vueRouter from 'vue-router'
 import App from './app.vue'
+import Vuex from 'vuex'
 
 import './assets/styles/test-stylus.styl'
 import './assets/styles/global.styl'
 import createRouter from './config/router.js'
+import createStore from './store/store.js'
 // const root = document.createElement('div')
 // document.body.appendChild(root)
 Vue.use(vueRouter)
 const router = createRouter()
 
+Vue.use(Vuex)
+const store = createStore()
 //路由守卫（全局）
 //路由独享守卫 见 login.vue
 //进行数据校验,需要用户登录的
@@ -32,5 +36,6 @@ router.afterEach((to, from) => {
 //在根节点实例上挂载 router，在每一个组件里面都可以使用这个对象
 new Vue({
   router,
+  store,
   render: (h) => h(App)
 }).$mount('#root')
